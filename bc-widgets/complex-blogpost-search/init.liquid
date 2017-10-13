@@ -1,0 +1,65 @@
+
+<!-- Select2 - https://select2.github.io/ -->
+<link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
+
+
+
+{% comment %}+++++ done loading prerequisites -->{% endcomment %}
+
+{% comment %}Load Tags{% endcomment %}
+{module_data resource="tags" version="v3" fields="id,tagName" skip="0" limit="500" order="tagName" collection="myTags"}
+
+{% comment %}Load Categories, modify the parent id {% endcomment %}
+{% assign categoryParentId = 68636 -%}
+{module_data resource="categories" version="v3" where="\{'parentId':{{categoryParentId}}\}" skip="0" limit="500" order="category" collection="myCats"}
+
+			<form id="searchForm" class="form-horizontal">
+                <div class="row">
+                    <div class="large-12 columns mb10">
+                        <label>Live search
+                            <select id="postSearch" name="postSearch" class="form-control"></select>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-12 columns mb10">
+                        <label>Tags
+                            <select id="tags" name="tags.tagId" class="form-control" data-resource="tags" data-placeholder="Select tag/s" data-filter="tagId" multiple="true">
+                                {% for item in myTags.items -%}
+                                <option value="{{item.id}}">{{item.tagName}}</option>
+                                {% endfor %}
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                {% comment -%}
+                <div class="row">
+                    <div class="large-12 columns mb10">
+                        <label>Title
+                            <input type="text" name="postTitle" class="form-control" placeholder="Post title" data-filter="postTitle">
+                        </label>
+                    </div>
+                </div>	
+				<div class="row">
+					<div class="large-12 columns mb10">
+                        <label>Categories
+                            <select id="categories" name="categories.categoryId" class="form-control" data-resource="categories" data-placeholder="Select category/s" data-filter="categoryId" multiple="true">
+                            {% for item in myCats.items -%}
+                                <option value="{{item.id}}">{{item.category}}</option>
+                            {% endfor %}
+                            </select>
+                        </label>
+					</div>
+				</div>
+                {% endcomment -%}
+                <div class="row">
+                    <div class="large-12 columns mb10">
+                        <button type="submit" id="searchButton" class="button default">Search</button>
+                    </div>
+                </div>
+			</form>
+<p>&nbsp;</p>
+
+
+<script src="/bc-widgets/complex-blogpost-search/cb-script.js" type="text/javascript"></script>

@@ -1,0 +1,25 @@
+<html>
+<head>
+<!-- TemplateBeginEditable name="doctitle" --><title></title><!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+
+{% include"/_System/Includes/head.inc" %}
+
+</head>
+<body>
+{module_contentholder, name="_Template - Header"} 
+<!-- //header.row -->
+<section class="main-content">
+  <div class="row">
+    <div class="small-12 columns">
+      <div class="inner-content"> <!-- TemplateBeginEditable name="ContentArea" -->{tag_pagecontent}<!-- TemplateEndEditable --> </div>
+    </div>
+  </div>
+</section>
+{module_contentholder, name="_Footer"} 
+<!-- footer --> 
+{% include"/_System/Includes/scripts.inc" %} 
+<!-- include scripts -->
+
+
+</body>
+</html>

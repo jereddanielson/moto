@@ -1,0 +1,116 @@
+<script>
+
+$(document).ready( function() {
+	// Email input ID
+	var $emailAddress = $("#EmailAddress");
+	var $userName = $("#Username");
+
+    // Delay in miliseconds
+    var _delay = 500;
+
+    // Sets a timer and resets after said miliseconds
+    var keyUpDelay = (function() {
+
+        var timer = 0;
+
+        return function(callback, ms) {
+
+            clearTimeout(timer);
+
+            timer = setTimeout(callback, ms);
+        }
+    })();
+
+    /**
+     * When user writes their email and pauses for 500 miliseconds, 
+     * the function checkEmailExists is called if the email is valid
+     * with the email passed as the parameter. 
+     */
+    $emailAddress.keyup(function() {
+
+        var email = $emailAddress.val();
+
+        keyUpDelay(function() {
+
+            if (validateEmail(email)) {
+
+                checkEmailExists(email);
+
+            } else {
+
+                invalidEmail();
+            }
+
+        }, _delay);
+
+    });
+
+    /**
+     * Inform the visitor visually the email is valid and does not exist
+     * in your CRM records
+     */
+    function validEmail() {
+    	$emailAddress.css("border-color", "green"); 
+        $emailAddress.css("background-color", "#fff");
+        $(".the_error").slideUp();
+        $("#catwebformbutton").prop("disabled", false);
+        // now copy the value to the username field
+        $userName.val($emailAddress.val());
+        
+    }
+
+    /**
+     * Inform the visitor visually the email is invalid or that the
+     * email is already taken
+     */
+    function invalidEmail() {
+        $emailAddress.css("border-color", "red");
+        $emailAddress.css("background-color", "#EFEFEF");
+
+        $(".the_error").slideDown();
+        //$("#catwebformbutton").prop("disabled", true);
+        // clear the username field
+        //$userName.val('');
+        $userName.val($emailAddress.val());
+        
+    }
+
+    /**
+     * Validate email address
+     * @return bool
+     */
+	function validateEmail(email) {
+	    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	    return re.test(email);
+	}
+
+    /**
+     * Runs an AJAX call to check-email.html.
+     * The response will contain the html of the page.
+     * The info variable will have 1 or 0 (string).
+     */
+    function checkEmailExists(email) {
+
+        // Call the page that handles the query using module_data
+        $.ajax({
+            type: 'GET',
+            cache: false,
+            url: "/bc-widgets/email-already-in-use/check-email.html",
+            data: {
+                "emailaddress": email
+            },
+            success: function(response) {
+
+                // We will get the value of the div.
+                var info = $(response).filter('#customerInfo').text();
+
+                if (info != "0") {
+					invalidEmail();
+                } else {
+                	validEmail();
+                }
+            }
+        });
+    }
+});
+</script>

@@ -1,0 +1,82 @@
+<title>Shopping Cart</title>
+<h2>Review your items</h2>
+<div class="double-dash"></div>
+<div class="row">
+    <div class="columns large-12">
+        <div class="cartrow">
+            <div class="cartlabel cldetails">Item Details</div>
+            <div class="cartlabel clprice">Price</div>
+            <div class="cartlabel clqty">Qty</div>
+            <div class="cartlabel cltax">Tax</div>
+            <div class="cartlabel clcost">Cost</div>
+            <div class="cartlabel clremove text-center">Remove</div>
+        </div>
+    </div>
+</div>
+
+<!-- product item row -->
+{% for item in items -%}
+<div class="row">
+    <div class="columns large-12">
+        <div class="product-item">
+            <div class="cart-item product-image"><a href="{{item.url}}"><img src="{{item.imagePath}}" border="0" alt="{{item.name}}" data-pin-nopin="true"></a>
+            </div>
+            <div class="cart-item product-title"><a href="{{item.url}}">{{item.name}}</a>{% if item.description -%}<small><br>Selected Options: <em>{{item.description}}</em></small>{% endif -%}</div>
+            <div class="cart-item product-price">{{item.productTotalExceptTax | money}}</div>
+            <div class="cart-item product-qty">
+                <input onchange="{{item.quantityInputOnChange}};return false;" class="cartInputText" type="text" value="{{item.quantity}}">
+            </div>
+            <div class="cart-item product-tax">{{item.producttaxamount | money}}</div>
+            <div class="cart-item product-total">{{item.producttotal | money}}</div>
+            <div class="cart-item product-remove text-center"><a href="#" onclick="{{item.removeOnClick}};return false;"><span class="fa fa-times-circle-o"></span></a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+<!-- end product item row -->
+
+<!-- end .columns.large-12 -->
+
+<!-- end .row -->
+<div id="cart-footer" class="row">
+    <div class="columns small-12 medium-6 large-4">
+        <div class="cart-opt opt-discount">
+            <label for="discountcode">Discount Code</label>
+            <input onchange="{{discountCodeOnChange}};return false;" value="{{discountCode}}" class="discountcodeInput" id="DiscountCode" name="DiscountCode" type="text">
+            <input type="submit" class="button small radius" value="Update" onclick="return false;" />
+            <label for="discountcode">Gift Card Code</label>
+            <input onchange="{{giftVoucherOnChange}};return false;" value="{{giftVoucher}}" class="discountcodeInput" id="GiftVoucher" name="GiftVoucher" type="text">
+            <input type="submit" class="button small radius" value="Update" onclick="return false;" />
+        </div>
+    </div>
+    <!-- end .column.large-4 -->
+    <div class="columns small-12 medium-6 large-4">
+        <div class="cart-opt">
+            <p><strong>Where are you shipping to?</strong>
+            </p>
+            {tag_shippingoptions,true,,,true,true}</div>
+    </div>
+    <!-- end .column.large-4 -->
+    <div class="columns small-12 medium-6 large-4">
+        <div id="opt-total-container">
+            <div class="opt-total-data">Sub-Total: <strong>{{productSubtotal | money}}</strong>
+            </div>
+            <div class="opt-total-data">Shipping and Handling: <strong>{{shippingTotal | money}}</strong>
+            </div>
+            <div class="opt-total-data">Sales Tax: <strong>{{productTaxTotal | money}}</strong>
+            </div>
+            <div class="opt-total-data">
+                <h3>TOTAL: {{invoiceTotal | money}}</h3>
+            </div>
+        </div>
+        <!-- End Total Container -->
+        <div class="cart-opt opt-btns">
+        <a id="catshopbuy" onclick="return {{buyButtonOnClick}}" href="{{buyUrl}}">Check Out</a>
+        <a id="catshopclear" href="#" onclick="{{clearCartOnClick}};return false;">Clear All</a>
+        </div>
+        <!-- End Buttons -->
+    </div>
+    <!-- end .column.large-4 -->
+</div>
+<!-- end .row -->

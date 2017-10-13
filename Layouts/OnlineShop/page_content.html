@@ -1,0 +1,36 @@
+{% unless globals.get.ProductID and globals.get.ProductID !="" -%} 
+
+<div class="store-description">
+
+        <h2>{tag_name}</h2>
+        <p class="lead">Intro body copy. A bit larger than normal body copy. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat proin gravada sit amet et unum. </p>
+
+</div>
+
+<div class="row">
+	{tag_cataloguelist,2,,,,true,true} 
+</div>
+
+{% endunless -%}
+
+{tag_productlist,3,,8,,true,true}
+
+<div class="footer">
+    <div class="store_pagination"> 
+        {% unless globals.get.postid -%}
+        {% comment -%}
+        <p class="caps text-center">Standard BC Pagination</p>
+        <p class="page-nav">{tag_previouspage} {tag_pagination} {tag_nextpage}</p>
+        {% endcomment -%}
+        
+        {% comment -%}
+        note: the following include is a beta version, see note in the include file
+        if it's not working for you, you can uncomment the standard BC pagination above
+        {% endcomment -%}
+        
+        {% include"/_System/Includes/store-pagination.inc" %}
+        {% endunless -%} 
+    </div>
+</div>
+
+

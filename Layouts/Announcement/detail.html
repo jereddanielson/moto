@@ -1,0 +1,87 @@
+<div class="row">
+  <div class="medium-12 columns">
+    <div class="announcement-details">
+      <h3>{tag_subject}</h3>
+      <span class="date">{tag_releasedate}</span> 
+      {tag_body}
+      <br>
+      <div class="goBack">{module_referreraddress,,Go Back}</div>
+      <hr />
+      <div class="row">
+        <div class="small-12 medium-6 columns">
+          <h5>Previous Comments</h5> 
+          {module_ratingrank}
+          {module_ratingfeedback}
+        </div>
+        <div class="small-12 medium-6 columns">
+          <h5>Provide Your Feedback</h5>
+            <form action="/RatingProcess.aspx?OID={module_oid}&amp;OTYPE={module_otype}" method="post" onsubmit="return checkWholeForm2343(this)" name="catratingform2343">
+              <div class="form">
+                <div class="medium-12">
+                  <label>Was this helpful?</label>
+                  <br /> No
+                  <input type="radio" value="1" name="Rating" />
+                  <input type="radio" value="2" name="Rating" />
+                  <input type="radio" value="3" checked="checked" name="Rating" />
+                  <input type="radio" value="4" name="Rating" />
+                  <input type="radio" value="5" name="Rating" /> Very </div>
+                <p></p>
+                <div class="medium-12">
+                  <label>Name (optional)</label>
+                  <br />
+                  <input type="text" maxlength="255" name="FullName" class="cat_textbox_small" /> </div>
+                <p></p>
+                <div class="medium-12">
+                  <label>Website (optional)</label>
+                  <br />
+                  <input class="cat_textbox_small" type="text" name="website" maxlength="255" /> </div>
+                <p></p>
+                <div class="medium-12">
+                  <label>Email Address (optional)</label>
+                  <br />
+                  <input type="text" maxlength="255" name="EmailAddress" class="cat_textbox_small" /> </div>
+                <p></p>
+                <div class="medium-12">
+                  <label>Prove you're not a robot</label>
+                  <br /> {module_recaptcha version="2"} </div>
+                <p></p>
+                <div class="medium-12">
+                  <label>Comment (optional)</label>
+                  <br />
+                  <textarea name="Feedback" class="cat_listbox_small"></textarea>
+                </div>
+                <p></p>
+                <div class="medium-12">
+                  <input type="submit" value="Submit" class="cat_button" /> </div>
+              </div>
+              <script type="text/javascript" src="/CatalystScripts/ValidationFunctions.js"></script>
+              <script type="text/javascript">
+                //<![CDATA[
+                function checkWholeForm2343(theForm) {
+                  var why = "";
+                  if (theForm.EmailAddress)
+                    if (theForm.EmailAddress.value.length > 0) why += checkEmail(theForm.EmailAddress.value);
+                  if (theForm.CaptchaV2) why += isEmpty(theForm.CaptchaV2.value, "Enter Word Verification in box below");
+                  if (theForm['g-recaptcha-response']) why += reCaptchaV2IsInvalid(theForm, "Please prove you're not a robot");
+                  if (why != "") {
+                    alert(why);
+                    return false;
+                  }
+                  return true;
+                }
+                //]]>
+              </script>
+            </form>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</div>

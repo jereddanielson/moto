@@ -1,0 +1,15 @@
+<html>
+<head>
+<!-- TemplateBeginEditable name="doctitle" --><title></title><!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+
+        {% include"/_System/Includes/head.inc" %}
+    
+</head>
+<body>
+        {module_contentholder, name="Header"}
+        <!-- TemplateBeginEditable name="ContentArea" -->{tag_pagecontent}<!-- TemplateEndEditable -->
+        {module_contentholder, name="Footer"}
+        {% include"/_System/Includes/scripts.inc" %}
+    
+</body>
+</html>

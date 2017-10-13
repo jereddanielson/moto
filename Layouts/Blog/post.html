@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta name="title" content="{tag_blogpostmetatitle}" />
+<meta name="description" content="{tag_blogpostmetadescription}" />
+<meta name="og:title" content="{tag_blogpostmetatitle}" />
+<meta name="og:description" content="{tag_blogpostmetadescription}" />
+<meta name="og:image" content="{tag_blogpostfeaturedimageurl}" />
+</head>
+
+<body>
+{% assign myDate = date %}
+        {% include "/bc-widgets/friendly-date/init.liquid" -%}
+<div class="blog-post"> {% if postFeaturedImage and postFeaturedImage != "" -%} <img class="post-image" alt="{tag_blogposttitle_nolink} - blog post image " src="{{postFeaturedImage}}" /> {% endif -%}
+  <h2 class="post-title" style="text-align:left"> {tag_blogposttitle_nolink} </h2>
+  <div class="row post-details">
+    <div class="small-12 columns"> <span class="float-left">{tag_blogpostauthor} - {tag_blogpostdate} <br />
+      Posted {{friendlyDate}} ago </span><span class="float-right">{% include "/bc-widgets/blogpost-tags/init.liquid" -%}</span> </div>
+  </div>
+  <div class="post-body"> {tag_blogpostbody}
+    <div class="links"> <a href="#comments">Comments ({tag_commentcount})</a> | <a href="#trackbacks">Trackbacks ({tag_trackbackcount})</a> | {tag_permalink}</div>
+  </div>
+  <!-- BEGIN #comments -->
+  
+  <div class="comment_listview"><a name="comments"></a>
+    <h2>Comment</h2>
+    <ul>
+     {tag_commentlist}
+    </ul>
+  </div>
+  <div class="comment-list">
+    <h3>Post a Comment</h3>
+    <form onsubmit="return checkWholeForm(this)" action="/RatingProcess.aspx?OID={tag_blogpostid}&amp;OTYPE={tag_blogposttype}" method="post">
+      <div class="form">
+        <div class="item">
+          <label>Name (optional)</label>
+          <input type="text" maxlength="255" name="fullname" class="cat_textbox_small" />
+        </div>
+        <div class="item">
+          <label>Website (optional)</label>
+          <input type="text" maxlength="255" name="website" class="cat_textbox_small" />
+        </div>
+        <div class="item">
+          <label>Email Address (optional)</label>
+          <input type="text" maxlength="255" name="emailaddress" class="cat_textbox_small" />
+        </div>
+        <div class="item">
+          <label>Your comment</label>
+          <textarea name="Feedback" class="cat_listbox_small"></textarea>
+        </div>
+        <div class="item">
+          <label>Prove you're not a robot</label>
+          {module_recaptcha version="2"} </div>
+        <div class="item">
+          <input type="submit" value="Submit" />
+        </div>
+      </div>
+      <script type="text/javascript" src="/CatalystScripts/ValidationFunctions.js"></script> 
+      <script type="text/javascript">
+              //<![CDATA[
+              function checkWholeForm(theForm) {
+                var why = "";
+                if (theForm.EmailAddress) if (theForm.EmailAddress.value.length > 0) why += checkEmail(theForm.EmailAddress.value);
+                if (theForm.CaptchaV2) why += isEmpty(theForm.CaptchaV2.value, "Enter Word Verification in box below");
+                if (theForm['g-recaptcha-response']) why += reCaptchaV2IsInvalid(theForm, "Please prove you're not a robot");
+                if (why != "") { alert(why); return false; }
+                return true;
+              }
+              //]]>
+              </script>
+    </form>
+  </div>
+  <!-- END #comments --> 
+  <!-- BEGIN #trackbacks --> 
+  <a name="trackbacks"></a>
+  <div class="trackbacks">
+    <dl>
+      <dt>Trackback Link</dt>
+      <dd> {tag_trackbacklink}</dd>
+      <dt>Trackbacks</dt>
+      <dd> {tag_trackbacklist}</dd>
+    </dl>
+  </div>
+  <!-- END #trackbacks --> 
+</div>
+
+<!-- END .blog-post -->
+</body>
+</html>

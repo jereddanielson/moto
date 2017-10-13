@@ -1,0 +1,17 @@
+{% assign myDate = date %}
+{% include "/bc-widgets/friendly-date/init.liquid" -%}
+
+<div class="blog-post">
+    {% if postFeaturedImage and postFeaturedImage != "" -%}
+        <a href="{tag_itemurl_nolink}"><img class="post-image" alt="{tag_blogposttitle_nolink} - blog post image " src="{{postFeaturedImage}}" /></a>
+    {% endif -%}
+    
+  <h3 class="post-title"> {tag_blogposttitle} </h3>
+  <div class="post-details"> {tag_blogpostauthor} - {tag_blogpostdate}<br>
+      Posted {{friendlyDate}} ago </div>
+  <div class="post-body"> {tag_blogpostbody}
+    <div class="links">
+      <a href="{tag_permalinkonly}#comments">Comments ({tag_commentcount})</a> | <a href="{tag_permalinkonly}#trackbacks">Trackbacks ({tag_trackbackcount})</a> | {tag_permalink}
+    </div>
+  </div>
+</div>

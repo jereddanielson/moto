@@ -1,0 +1,79 @@
+<div class="row">
+    <div class="columns medium-6">
+        <div class="image-large">
+            <img id="large-image" alt="Large image for: {{name}}" src="{tag_largeimage_path}" />
+        </div>
+                
+        {module_data version="v3" resource="products" resourceid="{{id}}" fields="poplets" collection="myPoplets" template=""}
+        {% if myPoplets.poplets %}
+        {% assign ppl = myPoplets.poplets | split: ";"%}
+
+        <div id="photogallery-products" class="product-thumbs row small-up-3 medium-up-3 large-up-3">
+            {% for item in ppl %} 
+            <div class="column">
+                <a href="{{ item }}">
+                    <img class="product-thumb" id="catpproduct_{{forloop.index}}" src="{{item}}?Action=thumbnail&amp;Width=100" alt="Small  image for: - {{ name }}"/> 
+                </a>
+            </div>
+            {% endfor -%}
+        </div>
+
+        {% endif -%}
+
+    </div>
+    <div class="columns medium-6">
+        <h1>{tag_name}</h1>
+        <div class="description">{tag_description}</div>
+        <ul>
+            <li class="price"><strong>{tag_saleprice}</strong>
+            </li>
+            <li class="instock">In stock: <strong>{tag_instock}</strong>
+            </li>
+        </ul>
+        <div class="productAttributesContainer">
+            <div class="row">
+                <div class="medium-8 columns">
+                    {tag_attributes}
+                </div>
+                <div class="medium-4 columns">Quantity {tag_addtocartinputfield}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="medium-7 columns">
+                {tag_buynow}
+            </div>
+            <div class="medium-5 columns"><span class="right wishlist-link"> <span class="fa fa-star"></span> <a>{tag_addtofavorites,Add to Wishlist,Remove from Wishlist}</a>
+                </span>
+            </div>
+            <div class="row">
+                <div class="medium-12 columns">
+                    
+                    {tag_relatedproducts template="" collection="relatedProducts"} {% if relatedProducts.items -%}
+                    <h3>Related Products</h3>
+                    <!-- loop thru the items -->
+                    {% for item in relatedProducts.items -%}
+                    <!-- iterate through each of your related items -->
+                    <div class="columns medium-4 text-center left">
+                        <div class="image">
+                            <a href="{{ item.url }}"><img src="{{ item.smallimage }}" alt="{{ item.name }} for {{ item.saleprice}}" />
+                            </a>
+                        </div>
+                        <ul class="product-details">
+                            <li class="price"><a href="{{ item.url }}">{{ item.saleprice | currency}}</a>
+                            </li>
+                            <li class="name">
+                                <h5><a href="{{ item.url }}">{{ item.name }}</a></h5>
+                            </li>
+                        </ul>
+                    </div>
+                    {% endfor -%} {% endif -%}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% include"/_System/Includes/product-detail-scripts.inc" %}

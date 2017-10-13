@@ -1,0 +1,6 @@
+{% assign email = 'eric@motorcycleyogi.com' -%}
+<a href="mailto:{{ email | url_param_escape }}">{{ email | replace: '@', '&#64;' }}</a>
+
+{% comment -%}
+with thanks to James Nowland at Team Headjam Creative for the above code which seems to work great
+{% endcomment -%}

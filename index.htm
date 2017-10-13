@@ -1,0 +1,45 @@
+<html><!-- InstanceBegin template="/Templates/Home.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" --><title>motorcycleYogi - UX/UI Motion Design | Motorcycle Journeys | Yoga Master</title><!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" -->
+        
+        <meta name="description" content="Breathe life into your design or prototype with UX/UI motion design, join a motorcycle journey for the spiritual bike ride of a lifetime, or immerse yourself in the healing practice of yoga." />
+    <!-- InstanceEndEditable -->
+
+        {% include"/_System/Includes/head.inc" %}
+    
+</head>
+<body>
+        {module_contentholder, name="Header"}
+        <!-- InstanceBeginEditable name="ContentArea" -->
+        <div class="anchor" id="work">
+            <!--------------     Work     ------------>
+            {module_contentholder name="Work"}
+        </div>
+        <div class="anchor" id="moto">
+            <!--------------     Moto Parallax     ------------>
+            {module_webapps id="22638" filter="randomClassified" itemId="117937"}
+            {% comment -%}{module_contentholder name="Moto-Parallax"}{% endcomment -%}
+            <!--------------     Moto Content     ------------>
+            {module_contentholder name="Moto"}
+        </div>
+        <div class="anchor" id="yoga">
+            <!--------------     Yoga Parallax     ------------>
+            {module_webapps id="22638" filter="randomClassified" itemId="117938"}
+            {% comment -%}{module_contentholder name="Yoga-Parallax"}{% endcomment -%}
+            <!--------------     Yoga Content     ------------>
+            {module_contentholder name="Yoga"}
+        </div>
+        <div class="anchor" id="about">
+            <!--------------     About     ------------>
+            {module_contentholder name="About"}
+        </div>
+        <div class="anchor" id="contact">
+            <!--------------     Contact     ------------>
+            {module_contentholder name="Contact"}
+        </div>
+    <!-- InstanceEndEditable -->
+        {module_contentholder, name="Footer"}
+        {% include"/_System/Includes/scripts.inc" %}
+    
+</body>
+<!-- InstanceEnd --></html>

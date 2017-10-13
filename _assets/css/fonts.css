@@ -1,0 +1,9 @@
+@charset "utf-8";
+/* CSS Document */
+@font-face { font-family: "CrimsonTextBold"; src: url('../fonts/CrimsonText-Bold.ttf');}
+@font-face { font-family: "CrimsonTextBoldItalic"; src: url('../fonts/CrimsonText-BoldItalic.ttf');}
+@font-face { font-family: "CrimsonTextItalic"; src: url('../fonts/CrimsonText-Italic.ttf');}
+@font-face { font-family: "CrimsonTextRoman"; src: url('../fonts/CrimsonText-Roman.ttf');}
+@font-face { font-family: "VitesseBlack"; src: url('../fonts/Vitesse-Black.otf');}
+@font-face { font-family: "VitesseBook"; src: url('../fonts/Vitesse-Book.otf');}
+@font-face { font-family: "VitesseMedium"; src: url('../fonts/Vitesse-Medium.otf');}

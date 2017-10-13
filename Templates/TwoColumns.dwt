@@ -1,0 +1,84 @@
+<html>
+<head>
+<!-- TemplateBeginEditable name="doctitle" --><title></title><!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+
+    {% include"/_System/Includes/head.inc" %}
+
+
+</head>
+<body>
+    {module_contentholder, name="_Template - Header"}
+    
+    {% include"/_System/Includes/breadcrumbs.inc" %}
+    
+    <section class="main">
+        <div class="row">
+           <aside>
+              <div class="small-12 medium-3 columns">
+                 
+                  {module_menu menuId="1405853" collection="sidebar_menu" template=""}
+                  
+                  <h3>Drilldown Menu</h3>
+                  <ul class="vertical menu" data-drilldown id="m1">
+                      {% if sidebar_menu.items %} {% for i in sidebar_menu.items %}
+                      <li><a href="{{i.url}}">{{i.label}}</a> {% if i.items %}
+                          <ul class="vertical menu" id="m2">
+                              {% for j in i.items %}
+                              <li><a href="{{j.url}}">{{j.label}}</a> {% if j.items %}
+                                  <ul class="vertical menu" id="m3">
+                                      {% for k in j.items %}
+                                      <li>
+                                          <a href="{{k.url}}">{{k.label}}</a>
+                                      </li>
+                                      {% endfor %}
+                                  </ul>
+                                  {% endif %}
+                              </li>
+                              {% endfor %}
+                          </ul>
+                          {% endif %}
+                      </li>
+                      {% endfor %} {% endif %}
+                  </ul>
+                  <hr>
+                  
+                  <h3>Accordian Menu</h3>
+                  <ul class="vertical menu" data-accordion-menu>
+                      {% if sidebar_menu.items %} {% for i in sidebar_menu.items %}
+                      <li><a href="{{i.url}}">{{i.label}}</a> {% if i.items %}
+                          <ul class="menu vertical nested">
+                              {% for j in i.items %}
+                              <li><a href="{{j.url}}">{{j.label}}</a> {% if j.items %}
+                                  <ul class="menu vertical nested">
+                                      {% for k in j.items %}
+                                      <li>
+                                          <a href="{{k.url}}">{{k.label}}</a>
+                                      </li>
+                                      {% endfor %}
+                                  </ul>
+                                  {% endif %}
+                              </li>
+                              {% endfor %}
+                          </ul>
+                          {% endif %}
+                      </li>
+                      {% endfor %} {% endif %}
+                  </ul>
+                  
+              </div>
+            </aside>
+            
+            <div class="small-12 medium-9 columns solutions-detail">
+                <!-- TemplateBeginEditable name="ContentArea" -->{tag_pagecontent}<!-- TemplateEndEditable -->
+            </div>
+        </div>
+    </section>
+    <!--end section main-->
+    
+    {module_contentholder, name="_Footer"}
+    <!-- footer -->
+    {% include"/_System/Includes/scripts.inc" %}
+    <!-- include scripts -->
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<header>
+    <div class="main_header text-center">
+        <div class="logo">
+            <a href="/"> 
+                <div class="row">
+                    <div class="medium-12 columns">
+                        <img src="/_assets/img/logo-icon.png" />
+                    </div>
+                    <div class="medium-12 columns">
+                        motorcycleYogi
+                        <div class="row">
+                            <div class="medium-12 columns">
+                                <span>motion guru</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="clearfix"></div>
+        <div class="primary-nav">
+            <div class="top-bar">
+                <!-- Primary Menu -->
+                {% assign menuid = "1405853" -%}
+                <div class="top-bar-title"> <span data-responsive-toggle="responsive-menu" data-hide-for="medium">
+                    <button class="menu-icon dark" type="button" data-toggle></button>
+                    </span> 
+                </div>
+                <div id="responsive-menu">
+                    <div class="top-bar">
+                        <ul class="dropdown menu show-for-medium" data-dropdown-menu>
+                            {module_menu menuID="{{menuid}}" render="collection" template="/ModuleTemplates/Menu/Main/main-menu.inc"}
+                        </ul>
+                        <div class="show-for-small-only">
+                            <hr>
+                            <!-- <h4>Mobile Menu Option 1</h4> -->
+                        </div>
+                        <ul class="vertical menu show-for-small-only" data-accordion-menu>
+                            {module_menu menuID="{{menuid}}" render="collection" template="/ModuleTemplates/Menu/Main/main-mobile-menu-accordian.inc"}
+                        </ul>
+                        <!-- <div class="show-for-small-only">
+<hr>
+<h4>Mobile Menu Option 2</h4>
+</div>
+<ul class="vertical menu show-for-small-only" width="200px" data-drilldown id="m1">
+{module_menu menuID="{{menuid}}" render="collection" template="/ModuleTemplates/Menu/Main/main-mobile-menu-drilldown.inc"}
+</ul> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

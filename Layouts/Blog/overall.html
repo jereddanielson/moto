@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="medium-12 columns">
+        <div class="row">
+            <div class="blog-container medium-8 large-9 columns">
+                <figure> {% if postFeaturedImage and postFeaturedImage != "" -%}
+        			<a href="{tag_itemurl_nolink}"><img class="post-image" alt="{tag_blogposttitle_nolink} - blog post image " src="{{postFeaturedImage}}" />
+        			</a> {% endif -%} 
+                </figure>
+                <h1>{tag_blogtitle}</h1>
+                <p class="description">{tag_blogdescription}</p>
+                <div class="wrapper">
+                    <div id="cb-results">
+                        {% comment %}Live Search Results will be loaded here{% endcomment %}
+                    </div>
+                    {tag_postlist, 3}
+                    
+                    {% unless globals.get.postid -%}
+                    {% comment -%}
+                    <p class="caps text-center">Standard BC Pagination</p>
+                    <p class="page-nav">{tag_previouspage} {tag_pagination} {tag_nextpage}</p>
+                    {% endcomment -%}
+                    <hr>
+                    {% comment -%}
+                        note: the following include is a beta version, see note in the include file
+                        if it's not working for you, you can uncomment the standard BC pagination above
+                    {% endcomment -%}
+                    
+                    {% include"/_System/Includes/blog-pagination.inc" %}
+                    {% endunless -%}
+                </div>
+            </div>
+            <div class="side-panel  medium-4 large-3 columns">
+                <h3>Live Search</h3>
+                {% comment -%}
+                   This and other items below are installed from the BC Widgets repository
+                   http://docs.businesscatalyst.com/widgets
+                {% endcomment -%}
+                {% include "/bc-widgets/complex-blogpost-search/init.liquid" -%} 
+                
+                <h3>Most Commented</h3> 
+                {% include "/bc-widgets/most-commented-posts/init.liquid" -%}
+
+
+                <h3>Recent Posts</h3> {tag_blogrecentpost}
+                <h3>Tags</h3> {tag_blogtaglist}
+                <h3>Archive</h3> {tag_blogpostarchive} </div>
+        </div>
+        <!-- END .blog-container -->
+    </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="booking-container">
+	<h1>{tag_name}</h1>
+	<p>
+		<strong>Date: </strong><span class="date">{tag_date}</span><br />
+		<strong>Capacity: </strong><span class="capacity">{tag_capacity}</span> ({tag_percentfull} booked)
+	</p>
+	
+	<h3>Details</h3>
+	{tag_body}
+
+	<form name="catwebformform48727" onsubmit="return checkWholeForm48727(this)" action="/FormProcessv2.aspx?WebFormID=10254&amp;OID={module_oid}&amp;OTYPE={module_otype}&amp;EID={module_eid}&amp;CID={module_cid}" method="post" enctype="multipart/form-data" id="catwebformform48727">
+			<h3>Booking</h3>
+			<div class="form row">
+				<div class="small-12 medium-6 large-6 columns">
+					<label for="FirstName">First Name
+						<input type="text" maxlength="255" name="FirstName" id="FirstName" />
+					</label>
+				</div>
+				<div class="small-12 medium-6 large-6 columns">
+					<label for="LastName">Last Name
+						<input type="text" maxlength="255" name="LastName" id="LastName" />
+					</label>
+				</div>
+				<div class="small-12 medium-6 large-6 columns">
+					<label for="EmailAddress">Email
+						<input type="text" maxlength="255" name="EmailAddress" id="EmailAddress" />
+					</label>
+				</div>
+				<div class="small-12 medium-6 large-6 columns">
+					<label for="Company">Company
+						<input type="text" maxlength="255" name="Company" id="Company" />
+					</label>
+				</div>
+				<div class="small-12 medium-6 large-6 columns end">
+					<label for="WorkPhone">Work Phone Number
+						<input type="text" maxlength="255" name="WorkPhone" id="WorkPhone" />
+					</label>
+					<p>&nbsp;</p>
+				</div>
+			</div>
+			<div class=" row">
+				<div class="small-12 medium-6 large-6 columns">
+					<input class="cat_button" id="catwebformbutton" type="submit" value="Submit" />
+				</div>
+			</div>
+			<div class="error">{module_error}</div>
+					
+		<script type="text/javascript" src="/CatalystScripts/ValidationFunctions.js" ></script>
+		<script type="text/javascript">
+			//<![CDATA[
+			var submitcount48727 = 0;function checkWholeForm48727(theForm){var why = "";if (theForm.FirstName) why += isEmpty(theForm.FirstName.value, "First Name");if (theForm.LastName) why += isEmpty(theForm.LastName.value, "Last Name"); if (theForm.EmailAddress) why += checkEmail(theForm.EmailAddress.value); if(why != ""){alert(why);return false;}if(submitcount48727 == 0){submitcount48727++;theForm.submit();return false;}else{alert("Form submission is in progress.");return false;}}
+			//]]>
+		</script>
+		</form>
+
+		<div class="go-back">{module_referreraddress,,Go Back}</div>
+</div><!-- END .booking-container -->
